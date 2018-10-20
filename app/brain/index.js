@@ -16,7 +16,7 @@ module.exports = {
         bot.sendMessage(msg.chat.id, resBot, {reply_to_message_id: msg.message_id});
     },
     qrcodedesc: function(msg, bot){
-        resBot = '*Cara penggunaan*\n------------------------------ \nqrcod=text yang akan di generate\n \n*Ex*: `qrcode=hello world`';
+        resBot = '*Cara penggunaan*\n------------------------------ \nqrcode=text yang akan di generate\n \n*Ex*: `qrcode=hello world`';
         bot.sendMessage(msg.chat.id, resBot, {parse_mode: 'Markdown',reply_to_message_id: msg.message_id});
     },
     qrcode: function(msg, bot){
