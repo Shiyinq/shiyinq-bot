@@ -23,7 +23,7 @@ bot.on('message', (msg) => {
     case '/help':
       brain.start(msg, bot);
       break;
-    case 'menu':
+    case '/menu':
       brain.menuBot(msg, bot);
       break;
     case '/qrcode':
@@ -32,8 +32,14 @@ bot.on('message', (msg) => {
     case '/lorem':
       brain.lorem(msg, bot);
       break;
-    case '/berita_teknologi':
+    case '/beritateknologi':
       brain.berita(msg, bot);
+      break;
+    case '/quoterandom':
+      brain.quoteRandom(msg, bot);
+      break;
+    case 'ping':
+      brain.ping(msg, bot);
       break;
     default:
       let resGenerate = msg.text.toLowerCase().split("=");
