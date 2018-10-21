@@ -5,19 +5,22 @@ let resBot = null;
 
 module.exports = {
     start: function(msg, bot){
-        resBot = 'Halo ' + msg.chat.first_name + '..' + 
-                 '\nSelamat datang' + 
-                 '\nKetikan perintah /menu untuk melihat daftar perintah yang lainnya';
+        resBot = '😀 Halo ' + msg.chat.first_name + '..' + 
+                 '\n\n🎉 Selamat datang..' + 
+                 '\n\n📃 Silahkan Ketikan /menu untuk melihat daftar perintah yang lainnya 😘';
 
         bot.sendMessage(msg.chat.id, resBot, {reply_to_message_id: msg.message_id});
     },
     menuBot: function(msg, bot){
-        resBot = '*Daftar Perintah*' + 
-                 '\n------------------------------' + 
-                 '\n-/Lorem' +
-                 '\n-/Qrcode' + 
-                 '\n-/BeritaTeknologi' + 
-                 '\n-/QuoteRandom';
+        resBot = '*📜 Daftar Perintah*' + 
+                 '\n-------------------------------' + 
+                 '\n🎈 /Lorem' +
+                 '\n🎈 /Qrcode' + 
+                 '\n🎈 /BeritaTeknologi' + 
+                 '\n🎈/QuoteRandom' +
+                 '\n\n👨‍💻 Perintah lain sedang dikembangkan'+
+                 '\n Coming Soon.. 👨‍💻' +
+                 '\n\n 🍭 [@Shiyinq~]("https://t.me/Shiyinq")';
 
         bot.sendMessage(msg.chat.id, resBot, {parse_mode: 'Markdown', reply_to_message_id: msg.message_id});
     },
@@ -27,10 +30,10 @@ module.exports = {
         bot.sendMessage(msg.chat.id, resBot, {reply_to_message_id: msg.message_id});
     },
     qrcodedesc: function(msg, bot){
-        bot.sendMessage(msg.chat.id, 'Silahkan ketikan kalimat yang ingin digenerate / ketik cancel untuk batal ', {reply_to_message_id: msg.message_id}).then(() => {
+        bot.sendMessage(msg.chat.id, 'Silahkan ketikan kalimat yang ingin digenerate 💁‍/ ketik cancel untuk batal 🙅‍', {reply_to_message_id: msg.message_id}).then(() => {
             bot.once('text', (msg) => {
                 if (msg.text.toLowerCase() === 'cancel') {
-                    bot.sendMessage(msg.chat.id, 'Oke tidak masalah :)', {reply_to_message_id: msg.message_id});
+                    bot.sendMessage(msg.chat.id, 'Oke tidak masalah 😘', {reply_to_message_id: msg.message_id});
                 } else {
                     let urlPhoto = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${msg.text}`;
                     bot.sendMessage(msg.chat.id, 'Hasil generate: ' + msg.text, {reply_to_message_id: msg.message_id});
@@ -40,13 +43,13 @@ module.exports = {
         })
     },
     berita: function(msg, bot){
-        bot.sendMessage(msg.chat.id, 'Berita teknologi terbaru untuk anda', {reply_to_message_id: msg.message_id})
+        bot.sendMessage(msg.chat.id, 'Berita teknologi terbaru untuk anda 💁‍, Selamat membaca 🤗', {reply_to_message_id: msg.message_id})
         axios.get(`https://newsapi.org/v2/top-headlines?country=id&category=technology&pageSize=3&apiKey=${newsapi}`)
         .then(res => {
             let datas = res.data.articles;        
             datas.forEach(data => {
                 resBot = `
-                *${data.title}* [Selengkapnya..](${data.url})
+                *${data.title}* [Selengkapnya 💨](${data.url})
                 `;
                 bot.sendMessage(msg.chat.id, resBot, {parse_mode: 'Markdown'});
             })
@@ -58,7 +61,7 @@ module.exports = {
     quoteRandom: function(msg, bot){
         axios.get('https://talaikis.com/api/quotes/random/')
         .then(res => {
-            resBot = '\n_"' + res.data.quote +'"_\n\n' + '`by: ' + res.data.author + '`';
+            resBot = '\n_"' + res.data.quote +'"_\n\n' + '🎼 `by: ' + res.data.author + '`';
             bot.sendMessage(msg.chat.id, resBot, {parse_mode: 'Markdown', reply_to_message_id: msg.message_id})
         })
         .catch(err => {
@@ -66,7 +69,7 @@ module.exports = {
         });
     },
     responDefault: function(msg, bot){
-        bot.sendMessage(msg.chat.id, 'Maaf saya tidak mengerti ka, hehehe', {reply_to_message_id: msg.message_id});
+        bot.sendMessage(msg.chat.id, '😥 Maaf saya tidak mengerti ka..', {reply_to_message_id: msg.message_id});
     },
     ping: function(msg, bot){
         // var option = {
@@ -83,10 +86,11 @@ module.exports = {
         //         }],["Cancel"]]
         //     }
         // };
-        bot.sendMessage(msg.chat.id, 'Send kamu siapa ?').then(() => {
-            bot.once("text", (msg) => {
-                bot.sendMessage(msg.chat.id, 'Halo ' + msg.text);
-            });
-        })
+        // bot.sendMessage(msg.chat.id, 'Send kamu siapa ?').then(() => {
+        //     bot.once("text", (msg) => {
+        //         bot.sendMessage(msg.chat.id, 'Halo ' + msg.text);
+        //     });
+        // })
+        bot.sendMessage(msg.chat.id, 'Ping pong! 🏓🏓', {reply_to_message_id: msg.message_id});
     }
 }
