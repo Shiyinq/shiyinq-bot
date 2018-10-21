@@ -5,28 +5,39 @@ let resBot = null;
 
 module.exports = {
     start: function(msg, bot){
-        bot.sendMessage(msg.chat.id, `Halo ${msg.chat.first_name}.. \nSelamat datang \nKetikan perintah /menu untuk melihat daftar perintah yang lainnya`, {reply_to_message_id: msg.message_id});
+        resBot = 'Halo ' + msg.chat.first_name + '..' + 
+                 '\nSelamat datang' + 
+                 '\nKetikan perintah /menu untuk melihat daftar perintah yang lainnya';
+
+        bot.sendMessage(msg.chat.id, resBot, {reply_to_message_id: msg.message_id});
     },
     menuBot: function(msg, bot){
-        resBot = '*Daftar Perintah*\n------------------------------ \n-/Lorem \n-/Qrcode \n-/BeritaTeknologi \n-/QuoteRandom';
+        resBot = '*Daftar Perintah*' + 
+                 '\n------------------------------' + 
+                 '\n-/Lorem' +
+                 '\n-/Qrcode' + 
+                 '\n-/BeritaTeknologi' + 
+                 '\n-/QuoteRandom';
+
         bot.sendMessage(msg.chat.id, resBot, {parse_mode: 'Markdown', reply_to_message_id: msg.message_id});
     },
     lorem: function(msg, bot){
-        resBot =`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec mollis lacus, id ornare lacus. Donec diam tellus, feugiat ut consequat sit amet, pellentesque vitae ipsum.  In semper sollicitudin erat in vehicula. Nullam eleifend justo ac ipsum posuere, eget sodales ex pharetra. Etiam ut neque sit amet ex tincidunt aliquet id ut sapien. Aenean quis tincidunt diam. In quis velit in tellus vehicula dapibus in aliquam ipsum. Maecenas id lorem ac augue imperdiet mattis nec ut nibh. Suspendisse potenti. Duis felis massa, sodales vitae suscipit quis, gravida sit amet risus. Ut dictum molestie venenatis.`;
+        resBot ='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec mollis lacus, id ornare lacus. Donec diam tellus, feugiat ut consequat sit amet, pellentesque vitae ipsum.  In semper sollicitudin erat in vehicula. Nullam eleifend justo ac ipsum posuere, eget sodales ex pharetra. Etiam ut neque sit amet ex tincidunt aliquet id ut sapien. Aenean quis tincidunt diam. In quis velit in tellus vehicula dapibus in aliquam ipsum. Maecenas id lorem ac augue imperdiet mattis nec ut nibh. Suspendisse potenti. Duis felis massa, sodales vitae suscipit quis, gravida sit amet risus. Ut dictum molestie venenatis.';
+
         bot.sendMessage(msg.chat.id, resBot, {reply_to_message_id: msg.message_id});
     },
     qrcodedesc: function(msg, bot){
-        resBot = '*Cara penggunaan*\n------------------------------ \nqrcode=text yang akan di generate\n \n*Ex*: `qrcode=hello world`';
-        bot.sendMessage(msg.chat.id, resBot, {parse_mode: 'Markdown',reply_to_message_id: msg.message_id});
-    },
-    qrcode: function(msg, bot){
-        let text = msg.text.toLowerCase();
-        let resText = text.split("qrcode=");
-
-        let urlPhoto = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${resText[1]}`;
-
-        bot.sendMessage(msg.chat.id, 'Hasil generate: ' + resText[1], {reply_to_message_id: msg.message_id});
-        bot.sendPhoto(msg.chat.id, urlPhoto);
+        bot.sendMessage(msg.chat.id, 'Silahkan ketikan kalimat yang ingin digenerate / ketik cancel untuk batal ', {reply_to_message_id: msg.message_id}).then(() => {
+            bot.once('text', (msg) => {
+                if (msg.text.toLowerCase() === 'cancel') {
+                    bot.sendMessage(msg.chat.id, 'Oke tidak masalah :)', {reply_to_message_id: msg.message_id});
+                } else {
+                    let urlPhoto = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${msg.text}`;
+                    bot.sendMessage(msg.chat.id, 'Hasil generate: ' + msg.text, {reply_to_message_id: msg.message_id});
+                    bot.sendPhoto(msg.chat.id, urlPhoto);
+                }
+            })
+        })
     },
     berita: function(msg, bot){
         bot.sendMessage(msg.chat.id, 'Berita teknologi terbaru untuk anda', {reply_to_message_id: msg.message_id})
@@ -47,7 +58,7 @@ module.exports = {
     quoteRandom: function(msg, bot){
         axios.get('https://talaikis.com/api/quotes/random/')
         .then(res => {
-            resBot = '\n_"' + res.data.quote +'"_\n\n' + '_by: ' + res.data.author + '_';
+            resBot = '\n_"' + res.data.quote +'"_\n\n' + '`by: ' + res.data.author + '`';
             bot.sendMessage(msg.chat.id, resBot, {parse_mode: 'Markdown', reply_to_message_id: msg.message_id})
         })
         .catch(err => {
@@ -58,6 +69,24 @@ module.exports = {
         bot.sendMessage(msg.chat.id, 'Maaf saya tidak mengerti ka, hehehe', {reply_to_message_id: msg.message_id});
     },
     ping: function(msg, bot){
-        bot.sendMessage(msg.chat.id, '*Ping Pong gan*', {parse_mode: 'Markdown', reply_to_message_id: msg.message_id});
+        // var option = {
+        //     "parse_mode": "Markdown",
+        //     "reply_to_message_id": msg.message_id,
+        //     "reply_markup": {
+        //         "one_time_keyboard": true,
+        //         "keyboard": [[{
+        //             text: "Menu",
+        //             url: '/menu'
+        //         }], [{
+        //             text: "Start",
+        //             url: '/start'
+        //         }],["Cancel"]]
+        //     }
+        // };
+        bot.sendMessage(msg.chat.id, 'Send kamu siapa ?').then(() => {
+            bot.once("text", (msg) => {
+                bot.sendMessage(msg.chat.id, 'Halo ' + msg.text);
+            });
+        })
     }
 }

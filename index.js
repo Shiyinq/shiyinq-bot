@@ -5,6 +5,7 @@ const brain = require('./app/brain/index');
 const bot = new TelegramBot(token, {polling: true});
  
 // Matches "/echo [whatever]"
+// /\/echo (.+)/
 bot.onText(/\/echo (.+)/, (msg, match) => {
 
   const chatId = msg.chat.id;
@@ -42,12 +43,9 @@ bot.on('message', (msg) => {
       brain.ping(msg, bot);
       break;
     default:
-      let resGenerate = msg.text.toLowerCase().split("=");
-      if (resGenerate[0] == 'qrcode') {
-        brain.qrcode(msg, bot);
-      } else {
-        brain.responDefault(msg, bot);
-      }
+      console.log('');
+      // brain.responDefault(msg, bot);
+
   }
  
 });
