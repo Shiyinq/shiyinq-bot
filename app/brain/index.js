@@ -11,6 +11,15 @@ module.exports = {
 
     bot.sendMessage(msg.chat.id, resBot, { reply_to_message_id: msg.message_id })
   },
+  help: function (msg, bot) {
+    resBot = 'Silahkan ketikan /menu ka 😀'
+    bot.sendMessage(msg.chat.id, resBot, { reply_to_message_id: msg.message_id })
+  },
+  about: function (msg, bot) {
+    resBot = '💁‍Halo perkenalkan nama saya Shiyinq' +
+             '\n\nSaya dibuat oleh [@Shiyinq]("https://t.me/Shiyinq")'
+    bot.sendMessage(msg.chat.id, resBot, { parse_mode: 'Markdown', reply_to_message_id: msg.message_id })
+  },
   menuBot: function (msg, bot) {
     resBot = '*📜 Daftar Perintah*' +
              '\n-------------------------------' +
@@ -30,14 +39,16 @@ module.exports = {
     bot.sendMessage(msg.chat.id, resBot, { reply_to_message_id: msg.message_id })
   },
   qrcodedesc: function (msg, bot) {
-    bot.sendMessage(msg.chat.id, 'Silahkan ketikan kalimat yang ingin digenerate 💁‍/ ketik cancel untuk batal 🙅‍', { reply_to_message_id: msg.message_id }).then(() => {
+    bot.sendMessage(msg.chat.id, 'Silahkan ketikan kalimat yang ingin digenerate 💁‍/ ketik cancel untuk batal 🙅‍', { reply_to_message_id: msg.message_id, reply_markup: { force_reply: true, selective: true } }).then(() => {
       bot.once('text', (msg) => {
-        if (msg.text.toLowerCase() === 'cancel') {
-          bot.sendMessage(msg.chat.id, 'Oke tidak masalah 😘', { reply_to_message_id: msg.message_id })
-        } else {
-          let urlPhoto = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${msg.text}`
-          bot.sendMessage(msg.chat.id, 'Hasil generate: ' + msg.text, { reply_to_message_id: msg.message_id })
-          bot.sendPhoto(msg.chat.id, urlPhoto)
+        if (msg.reply_to_message) {
+          if (msg.text.toLowerCase() === 'cancel') {
+            bot.sendMessage(msg.chat.id, 'Oke tidak masalah 😘', { reply_to_message_id: msg.message_id })
+          } else {
+            let urlPhoto = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${msg.text}`
+            bot.sendMessage(msg.chat.id, 'Hasil generate: ' + msg.text, { reply_to_message_id: msg.message_id })
+            bot.sendPhoto(msg.chat.id, urlPhoto)
+          }
         }
       })
     })
@@ -69,30 +80,34 @@ module.exports = {
       })
   },
   responDefault: function (msg, bot) {
-    bot.sendMessage(msg.chat.id, '😥 Maaf saya tidak mengerti ka..', { reply_to_message_id: msg.message_id })
+    let respon = ['😥 Maaf saya tidak mengerti ka..', 'Maksudnya apa ka ? 🤔', 'Aku gak mudeng ka 🙄', 'Hmmm 🤔', 'Bingung saya 😵', 'Gak ngerti aku..😓', 'Ngomong apa sih ka ? 🙄']
+    let getRandomResponse = respon[Math.floor(Math.random() * respon.length)]
+    bot.sendMessage(msg.chat.id, getRandomResponse, { reply_to_message_id: msg.message_id })
   },
   ping: function (msg, bot) {
-    // var options = {
-    //   'parse_mode': 'Markdown',
-    //   'reply_to_message_id': msg.message_id,
-    //   'reply_markup': {
-    //     'one_time_keyboard': true,
-    //     'keyboard': [[{
-    //       text: 'Menu',
-    //       url: '/menu'
-    //     }],
-    //     [{
-    //       text: 'Start',
-    //       url: '/start'
-    //     }],
-    //     ['Cancel']]
-    //   }
-    // }
+    var options = {
+      'parse_mode': 'Markdown',
+      'reply_to_message_id': msg.message_id
+      // 'reply_markup': {
+      //   'force_reply': true,
+      //   'selective': true,
+      // 'one_time_keyboard': true,
+      // 'keyboard': [[{
+      //   text: 'Menu',
+      //   url: '/menu'
+      // }],
+      // [{
+      //   text: 'Start',
+      //   url: '/start'
+      // }],
+      // ['Cancel']]
+      // }
+    }
     // bot.sendMessage(msg.chat.id, 'Send kamu siapa ?', options).then(() => {
     //   bot.once('text', (msg) => {
     //     bot.sendMessage(msg.chat.id, 'Halo ' + msg.text, options)
     //   })
     // })
-    bot.sendMessage(msg.chat.id, 'Ping pong! 🏓🏓', { reply_to_message_id: msg.message_id })
+    bot.sendMessage(msg.chat.id, 'Ping pong! 🏓🏓', options)
   }
 }
