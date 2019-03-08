@@ -70,10 +70,10 @@ module.exports = {
       })
   },
   quoteRandom: function (msg, bot) {
-    axios.get('https://talaikis.com/api/quotes/random/')
+    axios.get('https://quotesondesign.com/wp-json/posts?filter%5Borderby%5D=rand&filter%5Bposts_per_page%5D=1&callback=')
       .then(res => {
-        resBot = '\n_"' + res.data.quote + '"_\n\n' + '🎼 `by: ' + res.data.author + '`'
-        bot.sendMessage(msg.chat.id, resBot, { parse_mode: 'Markdown', reply_to_message_id: msg.message_id })
+        resBot = '\n_"' + res.data[0].content + '"_\n\n' + '🎼 `by: ' + res.data[0].title + '`'
+        bot.sendMessage(msg.chat.id, resBot, { parse_mode: 'markdown', reply_to_message_id: msg.message_id })
       })
       .catch(err => {
         console.log(err)
