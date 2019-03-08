@@ -1,5 +1,5 @@
 const axios = require('axios')
-const newsapi = require('../../config/index').token_newsapi
+const newsapi = require('../../config').tokenNewsapi
 
 let resBot = null
 
@@ -25,8 +25,8 @@ module.exports = {
              '\n-------------------------------' +
              '\n🎈 /Lorem' +
              '\n🎈 /Qrcode' +
-             '\n🎈 /BeritaTeknologi' +
-             '\n🎈 /QuoteRandom' +
+             '\n🎈 /Berita' +
+             '\n🎈 /Quote' +
              '\n\n👨‍💻 Perintah lain sedang dikembangkan' +
              '\n Coming Soon.. 👨‍💻' +
              '\n\n 🍭 [@Shiyinq~]("https://t.me/Shiyinq")'
