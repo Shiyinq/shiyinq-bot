@@ -1,5 +1,5 @@
 const axios = require('axios')
-const newsapi = require('../../config').tokenNewsapi
+const { tokenNewsapi } = require('../../config')
 
 let resBot = null
 
@@ -55,7 +55,7 @@ module.exports = {
   },
   berita: function (msg, bot) {
     bot.sendMessage(msg.chat.id, 'Berita teknologi terbaru untuk anda 💁‍, Selamat membaca 🤗', { reply_to_message_id: msg.message_id })
-    axios.get(`https://newsapi.org/v2/top-headlines?country=id&category=technology&pageSize=3&apiKey=${newsapi}`)
+    axios.get(`https://newsapi.org/v2/top-headlines?country=id&category=technology&pageSize=3&apiKey=${tokenNewsapi}`)
       .then(res => {
         let datas = res.data.articles
         datas.forEach(data => {
@@ -83,20 +83,6 @@ module.exports = {
     var options = {
       'parse_mode': 'Markdown',
       'reply_to_message_id': msg.message_id
-      // 'reply_markup': {
-      //   'force_reply': true,
-      //   'selective': true,
-      // 'one_time_keyboard': true,
-      // 'keyboard': [[{
-      //   text: 'Menu',
-      //   url: '/menu'
-      // }],
-      // [{
-      //   text: 'Start',
-      //   url: '/start'
-      // }],
-      // ['Cancel']]
-      // }
     }
     // bot.sendMessage(msg.chat.id, 'Send kamu siapa ?', options).then(() => {
     //   bot.once('text', (msg) => {
