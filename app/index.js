@@ -115,7 +115,7 @@ bot.on('message', (msg) => {
       }
     }
   }).catch((err) => {
-    brain.fallback.errorMessage(err, bot)
+    brain.fallback.errorMessage(msg, bot)
     console.log(err)
   })
 })
