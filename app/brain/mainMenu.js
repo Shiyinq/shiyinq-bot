@@ -6,9 +6,9 @@ class MainMenu {
     this.resBot = null
   }
   start (msg, bot) {
-    this.resBot = '😀 Halo ' + msg.chat.first_name + '..' +
-                 '\n\n🎉 Selamat datang..' +
-                 '\n\n📃 Silahkan Ketikan /menu untuk melihat daftar perintah yang lainnya 😘'
+    this.resBot = `😀 Halo ${msg.chat.first_name}.. 
+    \n🎉 Selamat datang..
+    \n📃 Silahkan Ketikan /menu untuk melihat daftar perintah yang lainnya 😘`
 
     bot.sendMessage(msg.chat.id, this.resBot, { reply_to_message_id: msg.message_id })
   }
@@ -17,20 +17,20 @@ class MainMenu {
     bot.sendMessage(msg.chat.id, this.resBot, { reply_to_message_id: msg.message_id })
   }
   about (msg, bot) {
-    this.resBot = '💁‍Halo perkenalkan nama saya Shiyinq' +
-             '\n\nSaya dibuat oleh [@Shiyinq]("https://t.me/Shiyinq")'
+    this.resBot = `💁‍Halo perkenalkan nama saya Shiyinq
+    \nSaya dibuat oleh [@Shiyinq]("https://t.me/Shiyinq")`
     bot.sendMessage(msg.chat.id, this.resBot, { parse_mode: 'Markdown', reply_to_message_id: msg.message_id })
   }
   menuBot (msg, bot) {
-    this.resBot = '*📜 Daftar Perintah*' +
-             '\n-------------------------------' +
-             '\n🎈 /Lorem' +
-             '\n🎈 /Qrcode' +
-             '\n🎈 /Berita' +
-             '\n🎈 /Quote' +
-             '\n\n👨‍💻 Perintah lain sedang dikembangkan' +
-             '\n Coming Soon.. 👨‍💻' +
-             '\n\n 🍭 [@Shiyinq~]("https://t.me/Shiyinq")'
+    this.resBot = `*📜 Daftar Perintah*
+    -------------------------------
+    🎈 /Lorem
+    🎈 /Qrcode
+    🎈 /Berita
+    🎈 /Quote
+    \n👨‍💻 Perintah lain sedang dikembangkan
+    \n Coming Soon.. 👨‍💻
+    \n 🍭 [@Shiyinq~]("https://t.me/Shiyinq")`
 
     bot.sendMessage(msg.chat.id, this.resBot, { parse_mode: 'Markdown', reply_to_message_id: msg.message_id })
   }
