@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api')
 const axios = require('axios')
 
-const brain = require('./brain')
+const { mainMenu, smalltalk, def } = require('./brain')
 const { axiosNluOptions, tokenBot } = require('../config')
 
 const bot = new TelegramBot(tokenBot, { polling: true })
@@ -32,22 +32,23 @@ bot.on('message', (msg) => {
 
     if (!msg.reply_to_message) {
       // TRIGER WITH KEYWORD
+
       switch (msgProcessing()) {
         case '/start':
           fallback = false
-          brain.mainMenu.start(msg, bot)
+          mainMenu.start(msg, bot)
           break
         case '/help':
           fallback = false
-          brain.mainMenu.help(msg, bot)
+          mainMenu.help(msg, bot)
           break
         case '/about':
           fallback = false
-          brain.mainMenu.about(msg, bot)
+          mainMenu.about(msg, bot)
           break
         case 'ping':
           fallback = false
-          brain.mainMenu.ping(msg, bot)
+          mainMenu.ping(msg, bot)
           break
         default:
           fallback = true
@@ -56,66 +57,64 @@ bot.on('message', (msg) => {
       // TRIGER WITH NLU
       if (getSafe(() => shiNlu.type_phrase[0].value === 'question' && shiNlu.smalltalk[0].value === 'namabot')) {
         fallback = false
-        brain.smalltalk.namaBot(msg, bot)
+        smalltalk.namaBot(msg, bot)
       }
 
       if (getSafe(() => shiNlu.type_phrase[0].value === 'greetings' && shiNlu.smalltalk[0].value === 'sapabot')) {
         fallback = false
-        brain.smalltalk.sapaBot(msg, bot)
+        smalltalk.sapaBot(msg, bot)
       }
 
       if (getSafe(() => shiNlu.type_phrase[0].value === 'greetings' && shiNlu.smalltalk[0].value === 'slmtpagi')) {
         fallback = false
-        brain.smalltalk.selamatPagi(msg, bot)
+        smalltalk.selamatPagi(msg, bot)
       }
 
       if (getSafe(() => shiNlu.type_phrase[0].value === 'greetings' && shiNlu.smalltalk[0].value === 'slmtsiang')) {
         fallback = false
-        brain.smalltalk.selamatSiang(msg, bot)
+        smalltalk.selamatSiang(msg, bot)
       }
 
       if (getSafe(() => shiNlu.type_phrase[0].value === 'greetings' && shiNlu.smalltalk[0].value === 'slmtsore')) {
         fallback = false
-        brain.smalltalk.selamatSore(msg, bot)
+        smalltalk.selamatSore(msg, bot)
       }
 
       if (getSafe(() => shiNlu.type_phrase[0].value === 'greetings' && shiNlu.smalltalk[0].value === 'slmtmalam')) {
         fallback = false
-        brain.smalltalk.selamatMalam(msg, bot)
+        smalltalk.selamatMalam(msg, bot)
       }
 
       if (getSafe(() => shiNlu.listFeaturs[0].value === 'menu')) {
         fallback = false
-        brain.mainMenu.menuBot(msg, bot)
+        mainMenu.menuBot(msg, bot)
       }
 
       if (getSafe(() => shiNlu.listFeaturs[0].value === 'qrcode')) {
         fallback = false
-        brain.mainMenu.qrcodedesc(msg, bot)
+        mainMenu.qrcodedesc(msg, bot)
       }
 
       if (getSafe(() => shiNlu.listFeaturs[0].value === 'news')) {
         fallback = false
-        brain.mainMenu.berita(msg, bot)
+        mainMenu.berita(msg, bot)
       }
 
       if (getSafe(() => shiNlu.listFeaturs[0].value === 'generatelorem')) {
         fallback = false
-        brain.mainMenu.lorem(msg, bot)
+        mainMenu.lorem(msg, bot)
       }
 
       if (getSafe(() => shiNlu.listFeaturs[0].value === 'quoterandom')) {
         fallback = false
-        brain.mainMenu.quoteRandom(msg, bot)
+        mainMenu.quoteRandom(msg, bot)
       }
 
       // DEFAULT RESPONSE
-      if (fallback) {
-        brain.fallback.responDefault(msg, bot)
-      }
+      if (fallback) def.responDefault(msg, bot)
     }
   }).catch((err) => {
-    brain.fallback.errorMessage(msg, bot)
+    def.errorMessage(msg, bot)
     console.log(err)
   })
 })
