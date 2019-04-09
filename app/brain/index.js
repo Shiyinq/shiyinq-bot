@@ -1,9 +1,9 @@
 const mainMenu = require('./mainMenu')
 const smalltalk = require('./smalltalk')
-const fallback = require('./fallback')
+const def = require('./fallback')
 
 module.exports = {
   smalltalk,
   mainMenu,
-  fallback
+  def
 }
