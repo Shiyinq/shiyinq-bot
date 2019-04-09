@@ -7,7 +7,7 @@ module.exports = {
   axiosNluOptions (msg) {
     return {
       method: 'POST',
-      headers: { 'Authorization': ' Bearer 1ac41fef-5bbd-47d8-90f1-cddeacdc3741', 'Content-Type': 'application/x-www-form-urlencoded' },
+      headers: { 'Authorization': ' Bearer 5821217f-fc30-48b7-84f5-c5afc425973d', 'Content-Type': 'application/x-www-form-urlencoded' },
       data: qs.stringify({ 'text': msg }),
       url: 'https://geist.kata.ai/nlus/Shiyinq:ShiyinqBot/predict'
     }
