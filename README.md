@@ -1,3 +1,3 @@
 # shiyinq-bot
 
-Just Simple Bot Telegram
+Simple Bot Telegram
