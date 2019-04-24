@@ -4,6 +4,9 @@ const axios = require('axios')
 const { mainMenu, smalltalk, def } = require('./brain')
 const { axiosNluOptions, tokenBot } = require('../config')
 
+const express = require('express')
+const app = express()
+
 const bot = new TelegramBot(tokenBot, { polling: true })
 // Matches "/echo [whatever]"
 // /\/echo (.+)/
@@ -118,3 +121,9 @@ bot.on('message', (msg) => {
     console.log(err)
   })
 })
+
+app.get('/', (req, res) => {
+  res.send("Hello world!, I'm Bot")
+})
+
+app.listen(3000)
