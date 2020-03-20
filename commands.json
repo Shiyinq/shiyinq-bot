@@ -1,0 +1,50 @@
+[
+  {
+    "name": "start",
+    "parameter": "",
+    "example": "/start",
+    "description": "menampilkan daftar perintah"
+  },
+  {
+    "name": "help",
+    "parameter": "<nama perintah>",
+    "example": "/help <ping>",
+    "description": "menampilkan cara pakai"
+  },
+  {
+    "name": "lorem",
+    "parameter": "",
+    "example": "/lorem",
+    "description": "menghasilkan satu kalimat lorem"
+  },
+  {
+    "name": "ping",
+    "parameter": "",
+    "example": "/ping",
+    "description": "ping ke bot"
+  },
+  {
+    "name": "coinflip",
+    "parameter": "",
+    "example": "/coinflip",
+    "description": "main lempar coin"
+  },
+  {
+    "name": "number",
+    "parameter": "<nomer maksimal>",
+    "example": "/number 10",
+    "description": "menghasilkan nomer secara acak"
+  },
+  {
+    "name": "qrcode",
+    "parameter": "<text>",
+    "example": "/qrcode change me",
+    "description": "merubah text ke kode qr"
+  },
+  {
+    "name": "news",
+    "parameter": "<kategori> <jumlah berita>",
+    "example": "/news business 5\n/news business",
+    "description": "berita terbaru"
+  }
+]

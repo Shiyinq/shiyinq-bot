@@ -1,20 +1,28 @@
 {
-  "name": "yinqbot",
+  "name": "shiyinq-bot",
   "version": "1.0.0",
-  "description": "i'm bot",
-  "main": "app/index.js",
+  "description": "Shiyinq Bot",
+  "main": "index.js",
   "scripts": {
-    "start": "node app/index.js",
     "dev": "nodemon"
   },
-  "author": "shiyinq",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shiyinq/shiyinq-bot.git"
+  },
+  "keywords": [
+    "Shiyinq"
+  ],
+  "author": "Shiyinq",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shiyinq/shiyinq-bot/issues"
+  },
+  "homepage": "https://github.com/Shiyinq/shiyinq-bot#readme",
   "dependencies": {
-    "axios": "^0.18.0",
-    "dotenv": "^6.1.0",
-    "express": "^4.16.4",
-    "node-telegram-bot-api": "^0.30.0",
-    "qs": "^6.6.0"
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "telegraf": "^3.36.0"
   },
   "devDependencies": {
     "eslint": "^5.7.0",
