@@ -2,7 +2,7 @@ const Extra = require('telegraf/extra')
 const Markup = require('telegraf/markup')
 
 module.exports = (bot) => {
-  bot.command('randomphoto', (ctx) => {
+  bot.command('rphoto', (ctx) => {
     let category = ctx.message.text.split(' ')[1]
     let photoURL = null
     photoURL = `https://source.unsplash.com/1600x900/?${category}`
