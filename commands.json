@@ -48,9 +48,9 @@
     "description": "berita terbaru"
   },
   {
-    "name": "randomphoto",
+    "name": "rphoto",
     "parameter": "<category>",
-    "example": "/randomphoto\nrandomphoto tech",
+    "example": "/rphoto\nrphoto tech",
     "description": "mengirim photo secara acak"
   }
 ]
