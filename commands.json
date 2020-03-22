@@ -49,7 +49,7 @@
   },
   {
     "name": "rphoto",
-    "parameter": "<category>",
+    "parameter": "<kategori>",
     "example": "/rphoto\nrphoto tech",
     "description": "mengirim photo secara acak"
   },
