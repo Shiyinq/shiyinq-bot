@@ -52,5 +52,11 @@
     "parameter": "<category>",
     "example": "/rphoto\nrphoto tech",
     "description": "mengirim photo secara acak"
+  },
+  {
+    "name": "movie",
+    "parameter": "<judul film>",
+    "example": "/movie batman",
+    "description": "mencari film di IMb"
   }
 ]

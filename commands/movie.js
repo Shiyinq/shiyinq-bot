@@ -2,13 +2,12 @@ const axios = require('axios')
 const Extra = require('telegraf/extra')
 const Markup = require('telegraf/markup')
 
-module.exports = (bot) => {
-  bot.command('movie', (ctx) => {
-    let search = ctx.message.text.split(' ')
-    search.shift()
-    search.join('%20')
-    let page = 1
+function searchMovie (ctx, message, page) {
+  let search = message.split(' ')
+  search.shift()
+  search.join('%20')
 
+  return new Promise((resolve, reject) => {
     axios.get(`https://www.omdbapi.com/?apikey=${process.env.OMDDB_API_KEY}&s=${search}&page=${page}`)
       .then(({ data }) => {
         let { Search, totalResults } = data
@@ -30,25 +29,87 @@ module.exports = (bot) => {
           }
         })
 
-        // if (totalResults > 10) {
-        //   let lastPage = Math.ceil(totalResults / 10)
+        if (totalResults > 10) {
+          let lastPage = Math.ceil(totalResults / 10)
 
-        //   if (page !== 1) {
-        //     idMovie[2].push(Markup.callbackButton('<prev', 'prevMovie'))
-        //   }
+          if (page !== 1) {
+            idMovie[2].push(Markup.callbackButton('<prev', JSON.stringify({
+              'prevMovie': {
+                search: message,
+                page: page - 1
+              }
+            })))
+          }
 
-        //   idMovie[2].push(Markup.callbackButton('❌', 'deleteSearchMovie'))
+          idMovie[2].push(Markup.callbackButton('❌', 'deleteSearchMovie'))
 
-        //   if (!(page >= lastPage)) {
-        //     idMovie[2].push(Markup.callbackButton('next>', 'nextMovie'))
-        //   }
-        // } else {
-        //   idMovie[2].push(Markup.callbackButton('❌', 'deleteSearchMovie'))
-        // }
+          if (!(page >= lastPage)) {
+            idMovie[2].push(Markup.callbackButton('next>', JSON.stringify({
+              'nextMovie': {
+                search: message,
+                page: page + 1
+              }
+            })))
+          }
+        } else {
+          idMovie[2].push(Markup.callbackButton('❌', 'deleteSearchMovie'))
+        }
 
         const btnDetail = Markup.inlineKeyboard(idMovie)
 
-        ctx.reply(movies, Extra.markup(btnDetail))
+        resolve({
+          movies: movies,
+          button: Extra.markup(btnDetail)
+        })
+      })
+      .catch((err) => {
+        reject(err)
+      })
+  })
+}
+
+function detailMovie (ctx, idMovie) {
+  axios.get(`http://www.omdbapi.com/?apikey=${process.env.OMDDB_API_KEY}&i=${idMovie}&plot=short`)
+    .then(({ data }) => {
+      let {
+        Title,
+        Year,
+        Rated,
+        Released,
+        Runtime,
+        Genre,
+        Director,
+        Writer,
+        Actors,
+        Plot,
+        Language,
+        Country,
+        Awards,
+        Poster,
+        imdbRating } = data
+
+      let infoMovie = `Title : ${Title}\nYear : ${Year}\nRated : ${Rated}\nReleased : ${Released}\nRuntime : ${Runtime}\nGenre : ${Genre}\nDirector : ${Director}\nWriter : ${Writer}\nActors : ${Actors}\nPlot : ${Plot}\nLanguage : ${Language}\nCountry : ${Country}\nAwards : ${Awards}\nimdbRating : ${imdbRating}`
+
+      ctx.replyWithPhoto({ url: Poster },
+        Extra.load({ caption: infoMovie })
+          .markdown()
+          .markup((m) =>
+            m.inlineKeyboard([
+              m.callbackButton('❌', 'deleteDetailMovie')
+            ])
+          )
+      )
+    })
+    .catch(() => {
+      ctx.reply('Maaf lagi ada kendala, silahkan coba lagi nanti')
+    })
+}
+
+module.exports = (bot) => {
+  bot.command('movie', (ctx) => {
+    searchMovie(ctx, ctx.message.text, 1)
+      .then(({ movies, button }) => {
+        ctx.reply(movies, button)
       })
       .catch(() => {
         ctx.reply('Maaf lagi ada kendala, silahkan coba lagi nanti')
@@ -63,39 +124,28 @@ module.exports = (bot) => {
 
     if (data.detailMovie) {
       let { detailMovie: { idMovie } } = data
-      ctx.getChat(chatId => {
-        console.log(chatId)
-      })
-      axios.get(`http://www.omdbapi.com/?apikey=${process.env.OMDDB_API_KEY}&i=${idMovie}&plot=short`)
-        .then(({ data }) => {
-          let {
-            Title,
-            Year,
-            Rated,
-            Released,
-            Runtime,
-            Genre,
-            Director,
-            Writer,
-            Actors,
-            Plot,
-            Language,
-            Country,
-            Awards,
-            Poster,
-            imdbRating } = data
+      detailMovie(ctx, idMovie)
+    }
 
-          let infoMovie = `Title : ${Title}\nYear : ${Year}\nRated : ${Rated}\nReleased : ${Released}\nRuntime : ${Runtime}\nGenre : ${Genre}\nDirector : ${Director}\nWriter : ${Writer}\nActors : ${Actors}\nPlot : ${Plot}\nLanguage : ${Language}\nCountry : ${Country}\nAwards : ${Awards}\nimdbRating : ${imdbRating}`
-
-          // const btnDelete = Markup.inlineKeyboard([
-          //   Markup.callbackButton('❌', 'deleteDetailMovie')
-          // ])
-
-          ctx.replyWithPhoto({ url: Poster }, { caption: infoMovie })
-          // ctx.reply('aa', Extra.markup(btnDelete))
+    if (data.prevMovie) {
+      let { prevMovie: { search, page } } = data
+      searchMovie(ctx, search, page)
+        .then(({ movies, button }) => {
+          ctx.editMessageText(movies, button)
         })
-        .catch(() => {
-          ctx.reply('Maaf lagi ada kendala, silahkan coba lagi nanti')
+        .catch(err => {
+          console.log(err)
+        })
+    }
+
+    if (data.nextMovie) {
+      let { nextMovie: { search, page } } = data
+      searchMovie(ctx, search, page)
+        .then(({ movies, button }) => {
+          ctx.editMessageText(movies, button)
+        })
+        .catch(err => {
+          console.log(err)
         })
     }
   })
