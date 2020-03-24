@@ -58,5 +58,11 @@
     "parameter": "<judul film>",
     "example": "/movie batman",
     "description": "mencari film di IMb"
+  },
+  {
+    "name": "chmod",
+    "parameter": "<format>",
+    "example": "/chmod 755\n /chmod rwxrwxrwx",
+    "description": "Chmod Kalkulator"
   }
 ]
