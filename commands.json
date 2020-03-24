@@ -1,15 +1,15 @@
 [
   {
-    "name": "start",
-    "parameter": "",
-    "example": "/start",
-    "description": "menampilkan daftar perintah"
-  },
-  {
     "name": "help",
     "parameter": "<nama perintah>",
     "example": "/help <ping>",
     "description": "menampilkan cara pakai"
+  },
+  {
+    "name": "menu",
+    "parameter": "",
+    "example": "/menu",
+    "description": "menampilkan daftar perintah"
   },
   {
     "name": "lorem",
@@ -63,6 +63,12 @@
     "name": "chmod",
     "parameter": "<format>",
     "example": "/chmod 755\n /chmod rwxrwxrwx",
-    "description": "Chmod Kalkulator"
+    "description": "chmod Kalkulator"
+  },
+  {
+    "name": "date",
+    "parameter": "<format>",
+    "example": "/date\n/date tanggal\n/date jam",
+    "description": "liat jam"
   }
 ]
