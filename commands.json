@@ -3,72 +3,105 @@
     "name": "help",
     "parameter": "<nama perintah>",
     "example": "/help <ping>",
-    "description": "menampilkan cara pakai"
+    "description": "menampilkan cara pakai",
+    "type": "private & group"
   },
   {
     "name": "menu",
     "parameter": "",
     "example": "/menu",
-    "description": "menampilkan daftar perintah"
+    "description": "menampilkan daftar perintah",
+    "type": "private & group"
   },
   {
     "name": "lorem",
     "parameter": "",
     "example": "/lorem",
-    "description": "menghasilkan satu kalimat lorem"
+    "description": "menghasilkan satu kalimat lorem",
+    "type": "private & group"
   },
   {
     "name": "ping",
     "parameter": "",
     "example": "/ping",
-    "description": "ping ke bot"
+    "description": "ping ke bot",
+    "type": "private & group"
   },
   {
     "name": "coinflip",
     "parameter": "",
     "example": "/coinflip",
-    "description": "main lempar coin"
+    "description": "main lempar coin",
+    "type": "private & group"
   },
   {
     "name": "number",
     "parameter": "<nomer maksimal>",
     "example": "/number 10",
-    "description": "menghasilkan nomer secara acak"
+    "description": "menghasilkan nomer secara acak",
+    "type": "private & group"
   },
   {
     "name": "qrcode",
     "parameter": "<text>",
     "example": "/qrcode change me",
-    "description": "merubah text ke kode qr"
+    "description": "merubah text ke kode qr",
+    "type": "private & group"
   },
   {
     "name": "news",
     "parameter": "<kategori> <jumlah berita>",
     "example": "/news business 5\n/news business",
-    "description": "berita terbaru"
+    "description": "berita terbaru",
+    "type": "private & group"
   },
   {
     "name": "rphoto",
     "parameter": "<kategori>",
     "example": "/rphoto\nrphoto tech",
-    "description": "mengirim photo secara acak"
+    "description": "mengirim photo secara acak",
+    "type": "private & group"
   },
   {
     "name": "movie",
     "parameter": "<judul film>",
     "example": "/movie batman",
-    "description": "mencari film di IMb"
+    "description": "mencari film di IMb",
+    "type": "private & group"
   },
   {
     "name": "chmod",
     "parameter": "<format>",
     "example": "/chmod 755\n /chmod rwxrwxrwx",
-    "description": "chmod Kalkulator"
+    "description": "chmod Kalkulator",
+    "type": "private & group"
   },
   {
     "name": "date",
     "parameter": "<format>",
     "example": "/date\n/date tanggal\n/date jam",
-    "description": "liat jam"
+    "description": "liat jam",
+    "type": "private & group"
+  },
+  {
+    "name": "pin",
+    "parameter": "",
+    "example": "/pin",
+    "description": "unpin pesan berlaku di group",
+    "type": "group"
+  },
+  {
+    "name": "unpin",
+    "parameter": "",
+    "example": "/unpin",
+    "description": "unpin pesan berlaku di group",
+    "type": "group"
+  },
+  {
+    "name": "delete",
+    "parameter": "",
+    "example": "/delete",
+    "description": "menghapus pesan berlaku di group",
+    "type": "group"
   }
 ]
