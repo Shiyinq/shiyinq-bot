@@ -1,14 +1,20 @@
 require('dotenv').config()
-
+const fs = require('fs')
 const Telegraf = require('telegraf')
 const bot = new Telegraf(process.env.BOT_TOKEN)
 
 const express = require('express')
 const app = express()
 
-require('fs').readdirSync('./commands')
-  .forEach(function (file) {
-    require('./commands/' + file)(bot)
+fs.readdirSync('./commands')
+  .forEach(file => {
+    if (fs.statSync('./commands/' + file).isDirectory()) {
+      fs.readdirSync('./commands/' + file).forEach((f) => {
+        require('./commands/' + file + '/' + f)(bot)
+      })
+    } else {
+      require('./commands/' + file)(bot)
+    }
   })
 
 bot.launch()
