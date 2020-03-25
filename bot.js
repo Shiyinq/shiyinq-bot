@@ -1,9 +1,13 @@
 require('dotenv').config()
 const fs = require('fs')
+
 const Telegraf = require('telegraf')
 const Telegram = require('telegraf/telegram')
+
 const tg = new Telegram(process.env.BOT_TOKEN)
 const bot = new Telegraf(process.env.BOT_TOKEN)
+
+const axios = require('axios')
 
 const express = require('express')
 const app = express()
@@ -21,52 +25,7 @@ fs.readdirSync('./commands')
 
 bot.launch()
 
-function random (list = []) {
-  let getRandomResponse = list[Math.floor(Math.random() * list.length)]
-  return getRandomResponse
-}
-
-// cron job/pesan otomatis
-app.get('/pagi', (req, res) => {
-  let text = [
-    'Pagi..',
-    'Selamat pagi, kamu udah bangun ? jangan lupa sarapan yaa',
-    'Hi Selamat pagi.. yang semangat ya hari ini'
-  ]
-  tg.sendMessage(process.env.OWNER, random(text))
-  res.send('OK')
-})
-
-app.get('/siang', (req, res) => {
-  let text = [
-    'Siangg..',
-    'Selamat siang, udah makan siang ?',
-    'Siang siang itu enaknya tidur siang lohh'
-  ]
-  tg.sendMessage(process.env.OWNER, random(text))
-  res.send('OK')
-})
-
-app.get('/sore', (req, res) => {
-  let text = [
-    'Sore.. udah pulang kerja ?',
-    'Sore..Tetep semangat ya walaupun capek..',
-    'Sore.. lagi dimana ? udah pulang ? jangan lupa makan kalau sampe rumah yaa'
-  ]
-  tg.sendMessage(process.env.OWNER, random(text))
-  res.send('OK')
-})
-
-app.get('/malam', (req, res) => {
-  let text = [
-    'Malemmm..',
-    'Selamat malam, semoga mimpi indah',
-    'Tidur dong.. udah malem ini, jangan sampe kesiangan besok'
-  ]
-  tg.sendMessage(process.env.OWNER, random(text))
-  res.send('OK')
-})
-
+require('./cronJobs/forCronJobs')(app, tg, axios)
 app.get('/', (req, res) => res.send("Hello world!, I'm Bot\n"))
 
 app.listen(3000)
