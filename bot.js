@@ -12,6 +12,28 @@ const axios = require('axios')
 const express = require('express')
 const app = express()
 
+bot.use((ctx, next) => {
+  const ownerOlny = process.env.OWNER_ONLY
+  const start = new Date()
+
+  ctx.getChat().then(async ({ id }) => {
+    if (ownerOlny) {
+      if (id.toString() === process.env.OWNER) {
+        console.log('is onwer')
+        await next()
+        const ms = new Date() - start
+        console.log('Response time: %sms', ms)
+      } else {
+        console.log('not owner')
+      }
+    } else {
+      await next()
+      const ms = new Date() - start
+      console.log('Response time: %sms', ms)
+    }
+  }).catch(err => console.log(err))
+})
+
 fs.readdirSync('./commands')
   .forEach(file => {
     if (fs.statSync('./commands/' + file).isDirectory()) {
