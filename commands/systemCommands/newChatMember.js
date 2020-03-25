@@ -1,6 +1,8 @@
 module.exports = (bot) => {
   bot.on('new_chat_members', (ctx) => {
-    let username = ctx.message.new_chat_member.first_name
-    ctx.reply(`Hai ${username}, Selamat datang di group`)
+    let newChatMembers = ctx.message.new_chat_members
+    newChatMembers.forEach(u => {
+      ctx.reply(`Hai ${u.first_name}, Selamat datang di group`)
+    })
   })
 }
