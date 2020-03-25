@@ -4,13 +4,27 @@ const fs = require('fs')
 const Telegraf = require('telegraf')
 const Telegram = require('telegraf/telegram')
 
+const session = require('telegraf/session')
+const Stage = require('telegraf/stage')
+const Scene = require('telegraf/scenes/base')
+const { leave } = Stage
+
 const tg = new Telegram(process.env.BOT_TOKEN)
 const bot = new Telegraf(process.env.BOT_TOKEN)
+const stage = new Stage()
 
 const axios = require('axios')
 
 const express = require('express')
 const app = express()
+
+fs.readdirSync('./stages/').forEach((file) => {
+  let stg = require('./stages/' + file)(Scene, leave)
+  stage.register(stg)
+})
+
+bot.use(session())
+bot.use(stage.middleware())
 
 bot.use((ctx, next) => {
   const ownerOlny = process.env.OWNER_ONLY
