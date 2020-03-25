@@ -27,7 +27,7 @@ function random (list = []) {
 }
 
 // cron job/pesan otomatis
-app.get('/morning', (req, res) => {
+app.get('/pagi', (req, res) => {
   let text = [
     'Pagi..',
     'Selamat pagi, kamu udah bangun ? jangan lupa sarapan yaa',
@@ -37,7 +37,7 @@ app.get('/morning', (req, res) => {
   res.send('OK')
 })
 
-app.get('/noon', (req, res) => {
+app.get('/siang', (req, res) => {
   let text = [
     'Siangg..',
     'Selamat siang, udah makan siang ?',
@@ -47,7 +47,17 @@ app.get('/noon', (req, res) => {
   res.send('OK')
 })
 
-app.get('/night', (req, res) => {
+app.get('/sore', (req, res) => {
+  let text = [
+    'Sore.. udah pulang kerja ?',
+    'Sore..Tetep semangat ya walaupun capek..',
+    'Sore.. lagi dimana ? udah pulang ? jangan lupa makan kalau sampe rumah yaa'
+  ]
+  tg.sendMessage(process.env.OWNER, random(text))
+  res.send('OK')
+})
+
+app.get('/malam', (req, res) => {
   let text = [
     'Malemmm..',
     'Selamat malam, semoga mimpi indah',
