@@ -84,6 +84,13 @@
     "type": "private & group"
   },
   {
+    "name": "urlshort",
+    "parameter": "<url>",
+    "example": "/urlshort https://google.com",
+    "description": "url shortener",
+    "type": "private & group"
+  },
+  {
     "name": "pin",
     "parameter": "",
     "example": "/pin",
