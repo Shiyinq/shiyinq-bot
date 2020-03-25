@@ -108,6 +108,10 @@ function detailMovie (ctx, idMovie) {
 }
 
 module.exports = (bot) => {
+  bot.action('deleteNews', ({ deleteMessage }) => {
+    deleteMessage().then(res => console.log(res)).catch(err => console.log(err))
+  })
+
   bot.action('deleteSearchMovie', ({ deleteMessage }) => {
     deleteMessage().then(res => console.log(res)).catch(err => console.log(err))
   })
