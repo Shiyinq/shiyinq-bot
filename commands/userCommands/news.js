@@ -1,6 +1,5 @@
 const axios = require('axios')
 const Extra = require('telegraf/extra')
-const Markup = require('telegraf/markup')
 
 module.exports = (bot) => {
   bot.command('news', (ctx) => {
@@ -23,11 +22,16 @@ module.exports = (bot) => {
             let url = data.url
             let urlImage = data.urlToImage
 
-            const keyboard = Markup.inlineKeyboard([
-              Markup.urlButton(title, url)
-            ])
-
-            ctx.replyWithPhoto(urlImage, Extra.markup(keyboard))
+            ctx.replyWithPhoto({ url: urlImage },
+              Extra.load({ caption: title })
+                .markdown()
+                .markup((m) =>
+                  m.inlineKeyboard([
+                    [m.urlButton('📖 Baca', url)],
+                    [m.callbackButton('❌ Hapus', 'deleteNews')]
+                  ])
+                )
+            )
           })
         })
         .catch(() => {
