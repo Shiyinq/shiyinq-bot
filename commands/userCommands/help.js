@@ -1,4 +1,4 @@
-const commands = require('../commands.json')
+const commands = require('../../commands.json')
 
 module.exports = (bot) => {
   bot.help((ctx) => {
