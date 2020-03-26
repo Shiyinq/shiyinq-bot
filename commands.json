@@ -91,6 +91,13 @@
     "type": "private & group"
   },
   {
+    "name": "corona",
+    "parameter": "<negara/rank>",
+    "example": "/corona\n/corona indonesia\n/corona rank",
+    "description": "info terbaru kasus covid-19",
+    "type": "private & group"
+  },
+  {
     "name": "pin",
     "parameter": "",
     "example": "/pin",
