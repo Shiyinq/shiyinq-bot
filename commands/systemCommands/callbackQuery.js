@@ -2,6 +2,10 @@ const { detailMovie, searchMovie } = require('../userCommands/movie')
 const Extra = require('telegraf/extra')
 
 module.exports = (bot) => {
+  bot.action('disableButton', (ctx) => {
+    console.log('Button Disable')
+  })
+
   bot.action('deleteNews', ({ deleteMessage }) => {
     deleteMessage().then(res => console.log(res)).catch(err => console.log(err))
   })
