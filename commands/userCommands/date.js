@@ -2,7 +2,7 @@ module.exports = (bot) => {
   bot.command('date', (ctx) => {
     let param = ctx.message.text.split(' ')[1]
     var local = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
-    let fullNow = Date(local)
+    let fullNow = new Date(local)
     let now = new Date(local)
     let date = now.getDate()
     let month = now.getMonth()
