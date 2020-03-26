@@ -15,7 +15,7 @@ module.exports = (bot) => {
     if (param === 'tanggal') {
       sendDate += `Sekarang tanggal: ${date}-${month.toString().length === 1 ? '0' + (month + 1) : month}-${year}`
     } else if (param === 'jam') {
-      sendDate += `Sekarang jam: ${hours.toString().length === 1 ? '0' + hours : hours}:${minutes}`
+      sendDate += `Sekarang jam: ${hours.toString().length === 1 ? '0' + hours : hours}:${minutes.toString().length === 1 ? '0' + minutes : minutes}`
     } else {
       sendDate += fullNow
     }
