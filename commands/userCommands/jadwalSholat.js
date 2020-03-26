@@ -26,10 +26,11 @@ module.exports = (bot) => {
 
       axios.get(`${baseURL}/kota/nama/${city}`)
         .then(({ data: { kota } }) => {
-          let [{ id, nama }] = kota
           if (kota.length === 0) {
             ctx.reply('Kota yang ada cari tidak ada')
           } else {
+            let [{ id, nama }] = kota
+
             axios.get(`${baseURL}/jadwal/kota/${id}/tanggal/${date}`)
               .then(({ data: { jadwal: { data } } }) => {
                 let { ashar, dhuha, dzuhur, imsak, isya, maghrib, subuh, tanggal, terbit } = data
