@@ -98,6 +98,13 @@
     "type": "private & group"
   },
   {
+    "name": "jadwalsholat",
+    "parameter": "<kota> <tanggal>",
+    "example": "/jadwalsholat\n/jadwalsholat jakarta\n/jadwalsholat jakarta dd/mm/yyyy",
+    "description": "jadwal sholat & imsak",
+    "type": "private & group"
+  },
+  {
     "name": "pin",
     "parameter": "",
     "example": "/pin",
