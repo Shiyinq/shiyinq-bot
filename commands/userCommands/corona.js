@@ -3,7 +3,7 @@ const Extra = require('telegraf/extra')
 const Markup = require('telegraf/markup')
 
 function corona (msg = 'all') {
-  let baseURL = 'https://corona.lmao.ninja/'
+  let baseURL = 'https://corona.lmao.ninja/v2/'
   let all = 'all'
   let countries = 'countries'
   return new Promise((resolve, reject) => {
