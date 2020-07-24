@@ -18,6 +18,8 @@ const axios = require('axios')
 const express = require('express')
 const app = express()
 
+const PORT = process.env.PORT || 5000;
+
 fs.readdirSync('./stages/').forEach((file) => {
   let stg = require('./stages/' + file)(Scene, leave)
   stage.register(stg)
@@ -64,4 +66,4 @@ bot.launch()
 require('./cronJobs/forCronJobs')(app, tg, axios)
 app.get('/', (req, res) => res.send("Hello world!, I'm Bot\n"))
 
-app.listen(3000)
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
