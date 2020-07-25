@@ -6,6 +6,15 @@ function random (list = []) {
 }
 
 module.exports = (app, tg, axios) => {
+  app.get('/msg', (req, res) => {
+    let msg = req.query.send
+    if (msg) {
+      tg.sendMessage(process.env.OWNER, msg)
+      res.send(`${msg}. Sended.`)
+    }
+    res.send('Query send required')
+  })
+
   app.get('/news', (req, res) => {
     let categorys = ['business', 'entertainment', 'health', 'science', 'sports', 'technology']
     let urlNews = `https://newsapi.org/v2/top-headlines?country=id&category=${random(categorys)}&pageSize=5&apiKey=${process.env.TOKEN_NEWSAPI}`
