@@ -8,7 +8,7 @@ module.exports = (bot) => {
     let baseURL = 'http://ip-api.com/json'
 
     if (!ip) {
-      ctx.reply('Silahkan masukan ip setelah command\n\nContoh: /dnslookup 64.233.160.0')
+      ctx.reply('Silahkan masukan ip setelah command\n\nContoh: /gip 64.233.160.0')
     } else {
       axios.get(`${baseURL}/${ip}`)
         .then(({ data }) => {
