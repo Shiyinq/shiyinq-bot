@@ -105,10 +105,10 @@
     "type": "general"
   },
   {
-    "name" : "dnslookup",
-    "parameter": "<dns>",
-    "example": "/dnslookup github.com\n/dnslookup gitlab.com",
-    "description": "informasi tentang dns suatu domain",
+    "name" : "gip",
+    "parameter": "<ip>",
+    "example": "/gip 64.233.160.0",
+    "description": "informasi geolocation dari ip",
     "type": "general"
   },
   {
