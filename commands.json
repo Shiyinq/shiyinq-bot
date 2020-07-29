@@ -4,105 +4,112 @@
     "parameter": "<nama perintah>",
     "example": "/help ping",
     "description": "menampilkan cara pakai",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "menu",
     "parameter": "",
     "example": "/menu",
     "description": "menampilkan daftar perintah",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "lorem",
     "parameter": "",
     "example": "/lorem",
     "description": "menghasilkan satu kalimat lorem",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "ping",
     "parameter": "",
     "example": "/ping",
     "description": "ping ke bot",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "coinflip",
     "parameter": "",
     "example": "/coinflip",
     "description": "main lempar coin",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "number",
     "parameter": "<nomer maksimal>",
     "example": "/number 10",
     "description": "menghasilkan nomer secara acak",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "qrcode",
     "parameter": "<text>",
     "example": "/qrcode change me",
     "description": "merubah text ke kode qr",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "news",
     "parameter": "<kategori> <jumlah berita>",
     "example": "/news business 5\n/news business",
     "description": "berita terbaru",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "rphoto",
     "parameter": "<kategori>",
     "example": "/rphoto\nrphoto tech",
     "description": "mengirim photo secara acak",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "movie",
     "parameter": "<judul film>",
     "example": "/movie batman",
     "description": "mencari film di imdb",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "chmod",
     "parameter": "<format>",
     "example": "/chmod 755\n /chmod rwxrwxrwx",
     "description": "chmod Kalkulator",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "date",
     "parameter": "<format>",
     "example": "/date\n/date tanggal\n/date jam",
     "description": "liat jam",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "urlshort",
     "parameter": "<url>",
     "example": "/urlshort https://google.com",
     "description": "url shortener",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "corona",
     "parameter": "<negara/rank>",
     "example": "/corona\n/corona indonesia\n/corona rank",
     "description": "info terbaru kasus covid-19",
-    "type": "private & group"
+    "type": "general"
   },
   {
     "name": "jadwalsholat",
     "parameter": "<kota> <tanggal>",
     "example": "/jadwalsholat\n/jadwalsholat jakarta\n/jadwalsholat jakarta dd/mm/yyyy",
     "description": "jadwal sholat & imsak",
-    "type": "private & group"
+    "type": "general"
+  },
+  {
+    "name" : "dnslookup",
+    "parameter": "<dns>",
+    "example": "/dnslookup github.com\n/dnslookup gitlab.com",
+    "description": "informasi tentang dns suatu domain",
+    "type": "general"
   },
   {
     "name": "pin",
