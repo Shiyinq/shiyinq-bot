@@ -9,7 +9,7 @@ module.exports = (bot) => {
         let { longitude, latitude, timestamp } = data
 
         ctx.reply('Posisi 🛰 ISS sekarang')
-        ctx.replyWithHTML(`<code>latitude: ${latitude}\nlongitude: ${longitude}\n\nTime: ${new Date(timestamp * 1000)} </code>`)
+        ctx.replyWithHTML(`<code>latitude: ${latitude}\nlongitude: ${longitude}\n\nTime: ${new Date(timestamp * 1000)} </code>\n\nSumber: wheretheiss.at`)
         ctx.replyWithLocation(latitude, longitude)
       })
       .catch(error => {
