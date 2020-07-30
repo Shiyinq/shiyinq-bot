@@ -112,6 +112,13 @@
     "type": "general"
   },
   {
+    "name" : "whereiss",
+    "parameter": "",
+    "example": "/whereiss",
+    "description": "lokasi satelit iss sekarang",
+    "type": "general"
+  },
+  {
     "name": "pin",
     "parameter": "",
     "example": "/pin",
