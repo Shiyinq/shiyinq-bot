@@ -7,6 +7,13 @@
     "type": "general"
   },
   {
+    "name": "ibot",
+    "parameter": "",
+    "example": "/ibot",
+    "description": "menampilkan informasi bot",
+    "type": "general"
+  },
+  {
     "name": "menu",
     "parameter": "",
     "example": "/menu",
