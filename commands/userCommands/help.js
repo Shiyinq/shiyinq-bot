@@ -6,7 +6,7 @@ module.exports = (bot) => {
     let text = null
 
     if (!param) {
-      ctx.reply('/help <nama perintah>')
+      ctx.reply('/help <nama perintah>\n\ncontoh: /help menu')
     } else {
       commands.forEach(cmd => {
         if (param === cmd.name) {
