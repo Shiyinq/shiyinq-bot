@@ -107,7 +107,7 @@
   {
     "name" : "gip",
     "parameter": "<ip>",
-    "example": "/gip /gip 64.233.160.0",
+    "example": "/gip 64.233.160.0",
     "description": "informasi geolocation dari ip",
     "type": "general"
   },
