@@ -1,5 +1,3 @@
-const axios = require('axios')
-
 function dateNow () {
   var local = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
   let now = new Date(local)
@@ -9,7 +7,8 @@ function dateNow () {
 
   return `${date.toString().length === 1 ? '0' + date : date}/${month.toString().length === 1 ? '0' + (month + 1) : (month + 1)}/${year}`
 }
-module.exports = (bot) => {
+
+module.exports = (bot, tg, axios) => {
   bot.command('jadwalsholat', (ctx) => {
     let param = ctx.message.text.split(' ')
     let city = param[1] || 'Jakarta'
