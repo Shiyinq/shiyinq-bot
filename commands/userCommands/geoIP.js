@@ -1,7 +1,6 @@
-const axios = require('axios')
 const command = 'gip'
 
-module.exports = (bot) => {
+module.exports = (bot, tg, axios) => {
   bot.command(command, (ctx) => {
     let param = ctx.message.text.split(' ')
     let ip = param[1]

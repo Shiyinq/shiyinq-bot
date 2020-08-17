@@ -1,7 +1,6 @@
-const axios = require('axios')
 const Extra = require('telegraf/extra')
 
-module.exports = (bot) => {
+module.exports = (bot, tg, axios) => {
   bot.command('news', (ctx) => {
     let category = ctx.message.text.split(' ')[1]
     let length = ctx.message.text.split(' ')[2]
