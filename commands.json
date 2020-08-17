@@ -133,6 +133,13 @@
     "type": "general"
   },
   {
+    "name" : "github",
+    "parameter": "<username>",
+    "example": "/github Shiyinq",
+    "description": "mencari user github",
+    "type": "general"
+  },
+  {
     "name": "pin",
     "parameter": "",
     "example": "/pin",
