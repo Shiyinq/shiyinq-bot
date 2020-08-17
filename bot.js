@@ -54,10 +54,10 @@ fs.readdirSync('./commands')
   .forEach(file => {
     if (fs.statSync('./commands/' + file).isDirectory()) {
       fs.readdirSync('./commands/' + file).forEach((f) => {
-        require('./commands/' + file + '/' + f)(bot, tg)
+        require('./commands/' + file + '/' + f)(bot, tg, axios)
       })
     } else {
-      require('./commands/' + file)(bot, tg)
+      require('./commands/' + file)(bot, tg, axios)
     }
   })
 
