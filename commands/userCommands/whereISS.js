@@ -1,7 +1,6 @@
-const axios = require('axios')
 const command = 'whereiss'
 
-module.exports = (bot) => {
+module.exports = (bot, tg, axios) => {
   bot.command(command, (ctx) => {
     ctx.reply('Sedang mencari posisi 🛰 ISS')
     axios.get('https://api.wheretheiss.at/v1/satellites/25544')

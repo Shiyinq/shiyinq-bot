@@ -1,6 +1,4 @@
-const axios = require('axios')
-
-module.exports = (bot) => {
+module.exports = (bot, tg, axios) => {
   bot.command('urlshort', (ctx) => {
     let param = ctx.message.text.split(' ')[1]
     let baseUrl = 'https://rel.ink/'
