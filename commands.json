@@ -112,6 +112,13 @@
     "type": "general"
   },
   {
+    "name": "weather",
+    "parameter": "<kota>",
+    "example": "/weather jakarta\n/weather bandung",
+    "description": "cuaca saat ini & ramalam cuaca besok",
+    "type": "general"
+  },
+  {
     "name" : "gip",
     "parameter": "<ip>",
     "example": "/gip 64.233.160.0",
